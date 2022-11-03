@@ -1,0 +1,83 @@
+/**
+ *packageName    : ${PACKAGE_NAME}
+ * fileName       : ${NAME}
+ * author         : ${USER}
+ * date           : ${DATE}
+ * description    :
+ * ===========================================================
+ * DATE              AUTHOR             NOTE
+ * -----------------------------------------------------------
+ * ${DATE}        ${USER}       최초 생성
+ */
+.header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    position: sticky;
+    z-index: 100;
+    /*다른 요소들보다 위에 이있을 것이라는 의미입니다 숫자가 클수록*/
+}
+
+.header_logo {
+    width: 75px;
+    object-fit: contain;
+    /*컨테이너 크기*/
+    margin: 15px 20px 0;
+}
+
+.header_search {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.header_search_icon {
+    margin-left: 20px;
+    padding: 5px;
+}
+
+.header_search_input {
+    height: 12px;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    background: blanchedalmond;
+    border-radius: 10px;
+    border: black;
+}
+
+.header_option {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.header_nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.header_option_line_one {
+    font-size: 10px;
+}
+
+.header_option_line_two {
+    font-size: 13px;
+    font-weight: 800;
+    margin-top: 3px;
+}
+
+.header_option_basket {
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+.header_option_line_two_basket_count {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
