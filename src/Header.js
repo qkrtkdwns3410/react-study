@@ -9,7 +9,6 @@
  * -----------------------------------------------------------
  * ${DATE}        ${USER}       최초 생성
  */
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import './Header.css';
 import SearchIcon from '@mui/icons-material/Search';
@@ -19,7 +18,7 @@ import {useStateValue} from "./StateProvider";
 
 // eslint-disable-next-line no-unused-vars
 function Header() {
-    const [{basket}, dispatch] = useStateValue();
+    const [{basket, user}, dispatch] = useStateValue();
     
     return (
             
@@ -32,10 +31,13 @@ function Header() {
                 <SearchIcon className="header_search_icon"/>
             </div>
             <div className="header_nav">
-                <div className="header_option">
-                    <span className="header_option_line_one">안녕하세요!</span>
-                    <span className="header_option_line_two">로그인 하기</span>
-                </div>
+                <Link className="loginPage" to="/login">
+                    <div className="header_option">
+                        <span className="header_option_line_one">안녕하세요!</span>
+                        <span className="header_option_line_two">로그인 하기</span>
+                    </div>
+                </Link>
+
                 <div className="header_option">
                     <span className="header_option_line_one">돌아가기</span>
                     <span className="header_option_line_two">주문내역</span>
@@ -46,7 +48,7 @@ function Header() {
                     <span className="header_option_line_two">구독과 좋아요!</span>
 
                 </div>
-                <Link to="/checkout" style={{textDecoration: 'none'}}>
+                <Link className="checkoutPage" to="/checkout">
                     <div className="header_option_basket">
                             <ShoppingBasket/>
                             <span className="header_option_line_two_basket_count">

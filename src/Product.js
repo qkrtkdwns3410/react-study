@@ -26,7 +26,7 @@ function Product({id, title, image, price, rating}) {
             <div className="product-info">
                 <p>{title}</p>
                 <p className="product-price">
-                    <small>가격</small>
+                    <small>가격 </small>
                     <strong>{price}</strong>
                     <small>원</small>
                 </p>
@@ -35,7 +35,7 @@ function Product({id, title, image, price, rating}) {
                         Array(rating)
                                 .fill()
                                 .map(() => (
-                                        <p>☢️</p>
+                                        <p>⭐️</p>
                                 ))
                     }
            
