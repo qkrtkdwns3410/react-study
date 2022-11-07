@@ -3,9 +3,12 @@ import CurrencyFormat from "react-currency-format";
 import './SubTotal.css';
 import {useStateValue} from "./StateProvider";
 import {getBasketTotal} from "./Reducer";
+import {useHistory} from "react-router-dom";
 
 function SubTotal() {
     const [{basket}, dispatch] = useStateValue();
+    
+    const history = useHistory();
     
     return (
             <div className="subtotal">
@@ -23,7 +26,7 @@ function SubTotal() {
                 )}
 
                                 decimalScale={2} value={getBasketTotal(basket)} displayType={"text"} thousandSeparator={true} prefix={"💸"}/>
-                <button>결제하기</button>
+                <button onClick={e => history.push('/payment')}>결제하기</button>
                 
         </div>
     );

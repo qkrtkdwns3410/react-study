@@ -15,11 +15,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import {ShoppingBasket} from "@mui/icons-material";
 import {Link} from "react-router-dom";
 import {useStateValue} from "./StateProvider";
+import {auth} from "./Firebase";
 
 // eslint-disable-next-line no-unused-vars
 function Header() {
     const [{basket, user}, dispatch] = useStateValue();
     
+    const handleAuthentication = () => {
+        if (user) {
+            auth.signOut(); // 로그 아웃 처리
+        }
+    }
     return (
             
             <div className="header">
@@ -34,7 +40,11 @@ function Header() {
                 <Link className="loginPage" to="/login">
                     <div className="header_option">
                         <span className="header_option_line_one">안녕하세요!</span>
-                        <span className="header_option_line_two">로그인 하기</span>
+                        {/*링크가 onClick보다 우선한다.*/}
+                        <Link to={!user && '/login'} className="homelogin">
+                            <span onClick={handleAuthentication} className="header_option_line_two">{user ? '로그아웃' : '로그인'}</span>
+                        </Link>
+                        
                     </div>
                 </Link>
 

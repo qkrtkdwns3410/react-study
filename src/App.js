@@ -4,9 +4,10 @@ import Home from "./Home";
 import Checkout from "./Checkout";
 import Login from './Login'
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {auth} from "./Firebase";
 import {useStateValue} from "./StateProvider";
+import Payment from "./Payment";
 
 function App() {
     const [{}, dispatch] = useStateValue(); // 레이어 사용
@@ -45,6 +46,10 @@ function App() {
                     <Route path="/checkout">
                         <Header/>
                         <Checkout/>
+                    </Route>
+                    <Route path="/payment">
+                        <Header/>
+                        <Payment/>
                     </Route>
                 </Switch>
             </div>
