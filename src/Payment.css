@@ -1,0 +1,37 @@
+.payment {
+    background-color: white;
+}
+
+.payment_container > h2 {
+    text-align: center;
+    padding: 10px;
+    font-weight: 400;
+    background-color: rgb(234, 237, 237);
+    border-bottom: 3px solid #a5a5f3;
+}
+
+.payment_container > a {
+    text-decoration: none;
+    text-align: center;
+}
+
+.payment_section {
+    display: flex;
+    padding: 20px;
+    margin: 0 20px;
+    border-bottom: 1px solid #8768bf;
+}
+
+.payment_title {
+    flex: 0.2;
+}
+
+/*0.2 => 부모 콘테이너에서 title열이 20퍼만 자리를 차지하는 것을 의미한다.*/
+
+.patment_address .payment_items .payment_details {
+    flex: 0.8;
+}
+
+.payment_details > form {
+    max-width: 400px;
+}
