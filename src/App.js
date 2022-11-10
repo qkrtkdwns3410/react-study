@@ -10,9 +10,10 @@ import {useStateValue} from "./StateProvider";
 import Payment from "./Payment";
 import {loadStripe} from "@stripe/stripe-js";
 import {Elements} from "@stripe/react-stripe-js";
+import Orders from "./Orders";
 
 const promise = loadStripe(
-        "pk_test_51M1l4rEMGaysRIBoehIzAhhuMLg0PBakg6ELoUzYz5ZdPY3hdeYRvVdRZlKYuCa9J22VX5IS17TDTaxw3tZqVaKg00BtTD3BMf"
+    "pk_test_51M1l4rEMGaysRIBoehIzAhhuMLg0PBakg6ELoUzYz5ZdPY3hdeYRvVdRZlKYuCa9J22VX5IS17TDTaxw3tZqVaKg00BtTD3BMf"
 );
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
     }, []); // 처음 렌더링될 때 한번만 실행합니다.
     
     return (
-            <Router>
+        <Router>
             <div className="App">
                 <Switch>
                     <Route path="/login">
@@ -59,9 +60,13 @@ function App() {
                             <Payment/>
                         </Elements>
                     </Route>
+                    <Route path="/orders">
+                        <Header/>
+                        <Orders/>
+                    </Route>
                 </Switch>
             </div>
-            </Router>
+        </Router>
     );
 }
 

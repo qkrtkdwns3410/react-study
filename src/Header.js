@@ -27,8 +27,8 @@ function Header() {
         }
     }
     return (
-            
-            <div className="header">
+        
+        <div className="header">
             <Link to="/">
                 <img className="header_logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1024px-Amazon_Web_Services_Logo.svg.png" alt="아마존 로고"/>
             </Link>
@@ -41,7 +41,7 @@ function Header() {
                     <div className="header_option">
                         <span className="header_option_line_one">안녕하세요!</span>
                         {/*링크가 onClick보다 우선한다.*/}
-                        <Link to={!user && '/login'} className="homelogin">
+                        <Link to={!user && '/login'} className="homeLogin">
                             <span onClick={handleAuthentication} className="header_option_line_two">{user ? '로그아웃' : '로그인'}</span>
                         </Link>
                         
@@ -50,7 +50,9 @@ function Header() {
 
                 <div className="header_option">
                     <span className="header_option_line_one">돌아가기</span>
-                    <span className="header_option_line_two">주문내역</span>
+                    <Link to="/orders" className="orderPage">
+                        <span className="header_option_line_two">주문내역</span>
+                    </Link>
 
                 </div>
                 <div className="header_option">

@@ -4,8 +4,8 @@ export const initialState = {
     
 };
 export const getBasketTotal = (basket) =>
-        /*amount : 초깃값 ;; item : 더해줄 배열값들.*/
-        basket?.reduce((amount, item) => item.price + amount, 0);
+    /*amount : 초깃값 ;; item : 더해줄 배열값들.*/
+    basket?.reduce((amount, item) => item.price + amount, 0);
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -15,9 +15,14 @@ const reducer = (state, action) => {
                 basket: [...state.basket, action.item],
                 
             };
+        case 'EMPTY_BASKET':
+            return {
+                ...state,
+                basket: []
+            }
         case 'REMOVE_FROM_BASKET':
             const index = state.basket.findIndex(
-                    (basketItem) => basketItem.id === action.id
+                (basketItem) => basketItem.id === action.id
             );
             
             let newBasket = [...state.basket];

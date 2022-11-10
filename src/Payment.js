@@ -19,6 +19,7 @@ import CurrencyFormat from "react-currency-format";
 import {getBasketTotal} from "./Reducer";
 import {CardElement, useElements, useStripe} from "@stripe/react-stripe-js";
 import axios from "./axios";
+import {db} from "./Firebase";
 
 function Payment() {
     const [{basket, user}, dispatch] = useStateValue();
@@ -34,18 +35,18 @@ function Payment() {
     
     useEffect(() => {
         const getClientSecret = async () => {
-            const response =
+            const res =
                 await axios({
                     method: 'post',
-                    url: "/payment/create?total=${getBasketTotal(basket) * 100}"
+                    url: "/payments/create?total=" + getBasketTotal(basket) * 100
                     
                 });
-            setClientSecret(response.data.clientSecret);
+            setClientSecret(res.data.clientSecret);
             
         };
         getClientSecret();
         
-    }, [basket])
+    }, [basket]);
     
     // async  : 비동기 처리
     const handleSubmit = async (event) => {
@@ -59,10 +60,23 @@ function Payment() {
             
                                     })
                                     .then(({paymentIntent}) => {
+                                        db.collection('users') // users  경로를 만들어서
+                                          .doc(user?.uid) // uid를 기준으로 문서들을 작성하라
+                                          .collection('orders') // 주문 경로를 만들어서
+                                          .doc(paymentIntent.id) // paymentIntent. id 를 기준으로 만들어준다
+                                          .set({
+                                              basket: basket,
+                                              amount: paymentIntent.amount,
+                                              created: paymentIntent.created,
+                                          });
                                         //초깃값으로 세팅
                                         setSucceeded(true);
                                         setError(null);
-                                        setProcessing("");
+                                        setProcessing(false);
+                                        // 딜레이가 생겻을때 버튼이 비활성화 된다. 하지만 너무 빨리 넘어가서 확인이 불가능
+                                        dispatch({
+                                            type: 'EMPTY_BASKET'
+                                        })
                                         history.replace("/orders");
                                     });
     };
@@ -83,7 +97,7 @@ function Payment() {
                     <div className={"payment_title"}>
                         <h3>배달 받을 곳</h3>
                     </div>
-                    <div className={"patment_address"}>
+                    <div className={"payment_address"}>
                         <p>{user?.email} 님의 주소</p>
                         <p>강원도</p>
                         <p>철원</p>
@@ -122,7 +136,7 @@ function Payment() {
                                 )}
 
                                                 decimalScale={2} value={getBasketTotal(basket)} displayType={"text"} thousandSeparator={true} prefix={"💸"}/>
-                                <button disabled={processing || disable || succeeded}><span>{processing ? <p>결제 중 입니다</p> : "결제하기"}</span></button>
+                                <button disabled={processing || disable || succeeded}><span>{processing ? <p>처리중</p> : "결제하기"}</span></button>
                             </div>
                             {error && <div>{error}</div>}
                         </form>

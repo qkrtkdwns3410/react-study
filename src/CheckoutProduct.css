@@ -29,5 +29,5 @@
 }
 
 .checkoutProduct_rating {
-    flex-direction: row;
+    display: flex;
 }
